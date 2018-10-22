@@ -101,7 +101,10 @@ Una vez hemos escrito nuestro programa ensamblador en un fichero _programa.s_ va
 - Si hemos usado _main_ el comando a usar será el siguiente:
 
   ```shell
-  as —32 -g sumanenteros.s -o sumanenteros.o; gcc -m32  sumanenteros.o -o sumanenteros
+  as --32 -g sumanenteros.s -o sumanenteros.o; gcc -m32  sumanenteros.o -o sumanenteros
+  ```
+  ```shell
+  gcc -m32 sumanenteros.s -g -o sumanenteros
   ```
 
 - Si hemos usado _start_ el comando a usar será:

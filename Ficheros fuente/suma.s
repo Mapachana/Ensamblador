@@ -1,4 +1,4 @@
-# Declaramos secciond e datos del programa
+# Declaramos seccion de datos del programa
 .section .data
  #Aqui se declara la lista, con elementos 1,2,10,1,2,10(binario),1,2,10(hexadecimal)
 lista:		.int 1,2,10,  1,2,0b10,  1,2,0x10
@@ -8,11 +8,12 @@ lista:		.int 1,2,10,  1,2,0b10,  1,2,0x10
 longlista:	.int (.-lista)/4
 # Declaramos una variable resultado donde se almacenara el resultado de la suma, la inicializamos a -1
 resultado:	.int -1
+formato: .ascii "La suma es: %i\n\0"
 
 # Declaramos la seccion de texto del programa.
 .section .text
 # Declaramos la seccion de comienzo del programa.
-_start:	.global _start
+main:	.global main
 
 # Guardamos la direccion de memoria donde comienza la lista en ebx
 	mov    $lista, %ebx
@@ -22,6 +23,11 @@ _start:	.global _start
 	call suma
 # Aqui ya hemos realizado la funcion suma, y movemos eax al resultado.
 	mov %eax, resultado
+
+	push resultado
+	push $formato
+	call printf
+	add $4, %esp
 
 # Estas tres instrucciones son las de salida del programa.
 	mov $1, %eax
